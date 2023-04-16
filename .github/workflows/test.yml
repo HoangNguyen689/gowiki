@@ -19,25 +19,3 @@ jobs:
 
       - name: Test
         run: go test -v ./...
-
-  test-cache:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: '1.20'
-
-      - uses: actions/cache@v3
-        with:
-          path: |
-            ~/go/pkg/mod
-            ~/.cache/go-build
-          key: ubuntu-latest-go-1.20-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ubuntu-latest-go-1.20-
-
-      - name: Test
-        run: go test ./...
